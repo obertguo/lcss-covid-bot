@@ -1,7 +1,8 @@
 set -e
 
+git remote add origin git@github.com:obertguo/lcss-covid-bot.git
+
 git add .
 git commit -m "deploy"
 
-git push --set-upstream git@github.com:obertguo/lcss-covid-bot.git.master master
-git push git@github.com:obertguo/lcss-covid-bot.git.master
+git push origin master
