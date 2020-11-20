@@ -1,4 +1,3 @@
-set -e
 
 git init 
 git add -A
