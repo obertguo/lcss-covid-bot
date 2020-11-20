@@ -1,0 +1,21 @@
+{
+  "name": "covid-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "ontario": "node tests\\ontario.js",
+    "london": "node tests\\london.js",
+    "test": "node tests\\test.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.0",
+    "cheerio": "^1.0.0-rc.3",
+    "chromedriver": "^86.0.0",
+    "discord.js": "^12.4.1",
+    "dotenv": "^8.2.0",
+    "selenium-webdriver": "^4.0.0-alpha.7"
+  }
+}

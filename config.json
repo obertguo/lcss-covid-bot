@@ -1,0 +1,32 @@
+{
+    "prefix": "c/",
+    "channels":{
+        "ontario":{
+            "cases": {
+                "id": "",
+                "desc": "Ontario Cases: "
+            },
+            "increase": {
+                "id": "770481263257452547",
+                "desc": "Ontario Increase: "
+            }
+        },
+        "london":{
+            "cases": {
+                "id": "",
+                "desc": "London Cases: "
+            },
+            "increase":{
+                "id": "777989241509642282",
+                "desc": "London Increase: "
+            }
+        }
+    },
+    "allowedUsers":[
+        "524001661379936268",
+        "226457061959925761"
+    ],
+    "options":{
+        "autoUpdate": "false"
+    }
+}
