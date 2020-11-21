@@ -1,40 +1,18 @@
-const Ontario = require('../../utils/Ontario');
-const London = require('../../utils/London');
-
-const config = require('../../config.json');
 const Discord = require('discord.js');
-
-const driver = require('../../utils/driver');
-const webdriver = require('selenium-webdriver');
-const cheerio = require('cheerio');
-
+const stats = require('../../stats.json');
 
 exports.run = async (message) =>{
 
-    if(!config.allowedUsers.includes(message.author.id)) return;
-    const msg = await message.channel.send('Fetching data...');
+    let embed = new Discord.MessageEmbed();
 
-    try {
-        const ontario = new Ontario(driver(), webdriver, cheerio);
-        await ontario.getData();
-    
-        const london = new London(driver(), webdriver, cheerio);
-        await london.getData();
-    
-        let embed = new Discord.MessageEmbed();
+    embed.setColor('#ff7979');
 
-        embed.setColor('#ff7979');
+    embed.addField('Ontario', `🚩 Total cases: **${stats.ontario.cases}** \n🔼 Increase from previous report: **${stats.ontario.increase}**`, true);
+    embed.addField('London', `🚩 Total cases: **${stats.london.cases}** \n🔼 Increase from previous report: **${stats.london.increase}**`, true);
+    embed.setFooter('Data retrieved on ' + stats.date);
 
-        embed.addField('Ontario', `🚩 Total cases: **${ontario.cases}** \n🔼 Increase from previous report: **${ontario.increase}**`, true);
-        embed.addField('London', `🚩 Total cases: **${london.cases}** \n🔼 Increase from previous report: **${london.increase}**`, true);
-    
-        msg.edit({embed: embed});
-    }
-    catch(err){
-        const errMsg = 'Somthing went wrong or this command is already running' + '```' + err + '...```'.substring(0, 200);
-        msg.edit(errMsg);
-    }
-    
+    message.channel.send({embed: embed});
+
 }
 
 exports.desc = 'Fetch Covid Stats';

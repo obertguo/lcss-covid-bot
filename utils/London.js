@@ -26,6 +26,7 @@ class London {
 
     async getData(){
         const url = 'https://app.powerbi.com/view?r=eyJrIjoiMzE5MzJlOTItOWE2ZS00MDNlLTlkNDEtMTcyYTg5OGFhMTFiIiwidCI6ImRjNTYxMjk1LTdjYTktNDFhOS04M2JmLTUwODM0ZDZhOWQwZiJ9';
+        
 
         try{
             await this.driver.get(url);
@@ -34,9 +35,9 @@ class London {
 
             let $ = this.cheerio.load(document);
 
-            this.cases = utils.parse($($('.textRun')[38]).text());
+            this.cases = utils.parse($($('.textRun')[42]).text());
 
-            this.increase = utils.parse($($('.textRun')[37]).text());
+            this.increase = utils.parse($($('.textRun')[41]).text());
 
         }
         

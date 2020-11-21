@@ -1,29 +1,14 @@
-const Ontario = require('../../utils/Ontario');
-const London = require('../../utils/London');
-
 const config = require('../../config.json');
-
-const driver = require('../../utils/driver');
-const webdriver = require('selenium-webdriver');
-const cheerio = require('cheerio');
-
+const stats = require('../../stats.json');
 
 exports.run = async (message) =>{
 
     if(!config.allowedUsers.includes(message.author.id)) return;
 
-    const msg = await message.channel.send('Fetching data...');
+    setName(message, config.channels.ontario.increase.id, config.channels.ontario.increase.desc + stats.ontario.increase);
+    setName(message, config.channels.london.increase.id, config.channels.london.increase.desc + stats.london.increase);
 
-    const ontario = new Ontario(driver(), webdriver, cheerio);
-    await ontario.getData();
-
-    const london = new London(driver(), webdriver, cheerio);
-    await london.getData();
-    
-    setName(message, config.channels.ontario.increase.id, config.channels.ontario.increase.desc + ontario.increase);
-    setName(message, config.channels.london.increase.id, config.channels.london.increase.desc + london.increase);
-
-    msg.edit('Completed');
+    message.channel.send('Completed');
 }
 
 const getChannel = (message, chanID) =>{

@@ -1,28 +1,13 @@
-const London = require('./London');
-const Ontario = require('./Ontario');
+const stats = require('../stats.json');
 const config = require('../config.json');
-
-const driver = require('./driver');
-const webdriver = require('selenium-webdriver');
-const cheerio = require('cheerio');
 
 const updateChannelsAsync = async (client) =>{
     console.log('Fetching stats...');
-    try{
-        const ontario = new Ontario(driver(), webdriver, cheerio);
-        await ontario.getData();
+    
+    setName(client, config.channels.ontario.increase.id, config.channels.ontario.increase.desc + stats.ontario.increase);
+    setName(client, config.channels.london.increase.id, config.channels.london.increase.desc + stats.london.increase);
 
-        const london = new London(driver(), webdriver, cheerio);
-        await london.getData();
-        
-        setName(client, config.channels.ontario.increase.id, config.channels.ontario.increase.desc + ontario.increase);
-        setName(client, config.channels.london.increase.id, config.channels.london.increase.desc + london.increase);
-
-        console.log('Updated stats');
-    }
-    catch(err){
-        console.error(err);
-    }
+    console.log('Updated stats');
 }
 
 
