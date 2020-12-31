@@ -7,10 +7,8 @@ class Graph{
     }
 
     createGraph(){
-        let g;
+        let g = new Array(this.height);
         this.width = this.arr.length;
-
-        g = new Array(this.height);
 
         for(let i = 0; i < this.height; i++){
             g[i] = new Array(this.width);
