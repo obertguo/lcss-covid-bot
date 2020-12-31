@@ -1,6 +1,7 @@
   module.exports = (client) =>{
     
     client.on('ready', () => require('./ready')(client));
+    client.on('guildMemberAdd', (member) => require('./guildMemberAdd.js')(member));
 
     client.on('message', message => require('./message')(client, message));
     client.on('error', err => console.log(err));

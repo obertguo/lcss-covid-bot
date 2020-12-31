@@ -1,11 +1,11 @@
 {
     "ontario": {
-        "cases": "100,790",
-        "increase": "1,418"
+        "cases": "182,159",
+        "increase": "3,328"
     },
     "london": {
-        "cases": "1,440",
-        "increase": "27"
+        "cases": "3,314",
+        "increase": "119"
     },
-    "date": "Fri Nov 20 2020 21:05:41 GMT-0500 (Eastern Standard Time)"
+    "date": "Thu Dec 31 2020 13:25:09 GMT-0500 (Eastern Standard Time)"
 }
