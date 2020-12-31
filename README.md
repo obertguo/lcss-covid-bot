@@ -21,6 +21,8 @@
     "chromedriver": "^86.0.0",
     "discord.js": "^12.4.1",
     "dotenv": "^8.2.0",
+    "mathjs": "^8.1.0",
+    "nekos.life": "^2.0.7",
     "selenium-webdriver": "^4.0.0-alpha.7"
   }
 ```
