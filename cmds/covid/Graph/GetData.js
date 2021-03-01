@@ -11,15 +11,16 @@ const getDataPromise = (days) =>{
             let dt = new Date();
             let i = 0;
 
-           while(i <= days){     
-                
+           while(i <= days){                     
                 //construct date format to be used in the query param
-                const dateFormat = dt.getFullYear().toString() + "-" + (dt.getMonth()+1).toString() + "-" + (dt.getDate()).toString();
+                const dateFormat = formatDate(dt);
                 
                 const res = await axios.get(url + dateFormat);
                 let dayTotal = 0;
-
-                if(res.data.result.records[0]) dayTotal = res.data.result.records[0].Total;
+                
+                if(Array.isArray(res.data.result.records)) {
+                    dayTotal = res.data.result.records.pop().Total;
+                }
 
                 //add record to beginning of array rather than the end
                 records.unshift({
@@ -39,5 +40,19 @@ const getDataPromise = (days) =>{
         }
     });
 }
+
+
+const formatDate = (dt) =>{
+    const year = dt.getFullYear();
+    let month = dt.getMonth() + 1;
+    let day = dt.getDate();
+
+    if(month.toString().length === 1) month = "0" + month;
+    
+    if(day.toString().length === 1) day = "0" + day;
+
+    return year + "-" + month + "-" + day;
+}
+
 
 module.exports = getDataPromise;

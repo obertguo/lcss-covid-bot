@@ -4,12 +4,11 @@ const Discord = require('discord.js');
 
 exports.run = async (message) =>{
     
-    if(!config.allowedUsers.includes(message.author.id)) {
-        return message.channel.send(new Discord.MessageEmbed().setDescription('**[Sike, you thought I would let you do it](https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstleyVEVO)**').setColor('#36393E'));
-    };
-
-    setName(message, config.channels.ontario.increase.id, config.channels.ontario.increase.desc + stats.ontario.increase);
-    setName(message, config.channels.london.increase.id, config.channels.london.increase.desc + stats.london.increase);
+    if(config.allowedUsers.includes(message.author.id) || message.member.roles.cache.has(config.options.moderation.adminRole)) {
+        setName(message, config.channels.ontario.increase.id, config.channels.ontario.increase.desc + stats.ontario.increase);
+        setName(message, config.channels.london.increase.id, config.channels.london.increase.desc + stats.london.increase);
+    }
+    else return message.channel.send(new Discord.MessageEmbed().setDescription('**[Sike, you thought I would let you do it](https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstleyVEVO)**').setColor('#36393E'));
 }
 
 const getChannel = (message, chanID) =>{

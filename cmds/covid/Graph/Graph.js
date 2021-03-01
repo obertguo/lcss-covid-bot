@@ -28,7 +28,6 @@ class Graph{
     }
 }
 
-
 const getMin = (arr) =>{
     return arr.reduce((min, current) => min < current ? min : current);
 }
@@ -56,7 +55,8 @@ const getText = (graph, max, min, spacing) =>{
 
     for(let i = graph.length-1; i >=0 ; i--){
         for(let j = 0; j < graph[i].length; j++){
-            s += graph[i][j] == undefined ? " " + spacing : "*" + spacing;
+            if(i === 0) s += " " + spacing;
+            else s += graph[i][j] === undefined ? " " + spacing : "*" + spacing;
         }
         s += "\n";
     }

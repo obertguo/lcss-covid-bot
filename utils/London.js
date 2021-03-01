@@ -35,9 +35,9 @@ class London {
 
             let $ = this.cheerio.load(document);
 
-            this.cases = utils.parse($($('.textRun')[42]).text());
+            this.cases = utils.parse($($('.textRun')[51]).text());
 
-            this.increase = utils.parse($($('.textRun')[41]).text());
+            this.increase = utils.parse($($('.textRun')[50]).text());
 
         }
         

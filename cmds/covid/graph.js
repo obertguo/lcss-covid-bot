@@ -28,7 +28,7 @@ exports.run = async (message, args) =>{
         embed.setTitle(`Graphical Representation of Ontario's Cases the past ${days} Days`);
         embed.setDescription("```" + g.plot() + "```");
         embed.setColor('#ff7979');
-        embed.setFooter("NOTE - if you do see a marker placed at 0, it means the data could not be found for that day...Unless if COVID is somehow eradicated ");
+        embed.setFooter("NOTE - there may be days where information was not available, and as such, weren't plotted on the graph");
 
         message.channel.send(embed);  
         // message.channel.send("```" + g.plot() + "```")
