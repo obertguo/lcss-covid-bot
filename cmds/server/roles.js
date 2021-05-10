@@ -1,2 +1,0 @@
-exports.run = (message) => message.channel.send({embed: message.client.embedBuilder().setTitle(`Roles: \`${message.guild.roles.cache.size}\``).setDescription(message.guild.roles.cache.map(r => r).join('  |  '))});
-exports.desc = 'Lists all roles in this server';

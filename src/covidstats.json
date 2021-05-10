@@ -1,0 +1,11 @@
+{
+    "ontario": {
+        "totalCases": 445351,
+        "dailyIncrease": 3947
+    },
+    "london": {
+        "totalCases": 9894,
+        "dailyIncrease": 90
+    },
+    "retrievedTimestamp": 1619373255947
+}
