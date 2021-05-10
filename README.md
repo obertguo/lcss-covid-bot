@@ -2,7 +2,7 @@
 ## Getting Started
 * A Node JS environment is required 
 * Typescript source code is located in `./src` and a compiled JavaScript release is located in `./dist`
-* In `./dist`, the entry point is `index.js`. `node .` or `node index.js` will start the bot. 
+* In `./dist`, the entry point is `index.js`. Thus, `node .` or `node index.js` will start the bot. 
 
 ## Config
 * A .env file is required inside the project's `static` directory as to store the discord bot's token. `TOKEN=BotTokenHere`.
