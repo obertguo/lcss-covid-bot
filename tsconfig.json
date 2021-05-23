@@ -1,0 +1,11 @@
+{
+    "compilerOptions": {
+        "target": "ES5",
+        "watch": true,
+        "lib": ["ES5", "ES2015.Promise"],
+        "outDir": "./dist",
+        "resolveJsonModule": true,
+        "rootDir": "./src"
+    },
+    "include": ["./src"]
+}
