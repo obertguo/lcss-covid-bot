@@ -8,14 +8,13 @@ const messageEventHandler = async (botUtils: BotUtils, message: Discord.Message)
 
     const args = message.content.split(botUtils.getBotConfig().prefix)[1].split(' ').filter(v => v!== '');
 
-    //only cmd will be lowercased
+    //only cmd will be lowercased, args wont be lowercased (for DB stuff)
     const cmd = args[0].toLowerCase();
 
     if(!botUtils.getCommandsMap().has(cmd)) return;
 
     try{
         await botUtils.getCommandsMap().get(cmd).exec(message, args, botUtils);
-        console.log(message);
     }
     catch(err){
         let chan = <Discord.TextChannel>message.channel;
