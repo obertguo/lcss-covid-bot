@@ -35,36 +35,29 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var utils = require("../utils/GeneralUtils");
-var util = require("util");
-var messageEventHandler = function (botUtils, message) { return __awaiter(void 0, void 0, void 0, function () {
-    var args, cmd, err_1, chan;
+var Utils = require("../../../utils/GeneralUtils");
+module.exports = function (message, value) { return __awaiter(void 0, void 0, void 0, function () {
     return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0:
-                if (message.author.bot || !message.content.toLowerCase().startsWith(botUtils.getBotConfig().prefix))
-                    return [2 /*return*/];
-                args = message.content.split(botUtils.getBotConfig().prefix)[1].split(' ').filter(function (v) { return v !== ''; });
-                cmd = args[0].toLowerCase();
-                if (!botUtils.getCommandsMap().has(cmd))
-                    return [2 /*return*/];
-                _a.label = 1;
-            case 1:
-                _a.trys.push([1, 3, , 4]);
-                return [4 /*yield*/, botUtils.getCommandsMap().get(cmd).exec(message, args, botUtils)];
-            case 2:
-                _a.sent();
-                return [3 /*break*/, 4];
-            case 3:
-                err_1 = _a.sent();
-                chan = message.channel;
-                message.channel.send("\u274C Command execution failed. You can report this to <@226457061959925761>").catch(function (errr) { return utils.logError("ERR:\n" + errr); });
-                if (util.inspect(err_1).length < 1900)
-                    message.channel.send('Reason for error:\n```js\n' + util.inspect(err_1) + '```').catch(function (errr) { return utils.logError("ERR:\n" + errr); });
-                utils.logError("Command execution failed.\nCOMMAND: " + message.content + "\nERR: " + util.inspect(err_1) + "\nTIME: " + new Date(Date.now()) + "\nGUILD: " + message.guild.name + " | " + message.guild.id + "\nCHANNEL: " + chan.name + " | " + chan.id + "\nUSER: " + message.author.username + " | " + message.author.id);
-                return [3 /*break*/, 4];
-            case 4: return [2 /*return*/];
-        }
+        return [2 /*return*/, new Promise(function (resolve, reject) { return __awaiter(void 0, void 0, void 0, function () {
+                var err_1;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0:
+                            _a.trys.push([0, 2, , 3]);
+                            if (!value)
+                                reject("Pronoun must be specified");
+                            return [4 /*yield*/, Utils.executeDBQuery('DELETE FROM `userpronouns` WHERE (userID = ? AND pronoun = ?)', [message.author.id, value])];
+                        case 1:
+                            _a.sent();
+                            resolve();
+                            return [3 /*break*/, 3];
+                        case 2:
+                            err_1 = _a.sent();
+                            reject(err_1);
+                            return [3 /*break*/, 3];
+                        case 3: return [2 /*return*/];
+                    }
+                });
+            }); })];
     });
 }); };
-module.exports = messageEventHandler;

@@ -34,7 +34,7 @@
     },
 
     "BotConfig":{
-        "prefix": "c.",
+        "prefix": "c/",
         "embedColor": "#ff7979"
     }
 }

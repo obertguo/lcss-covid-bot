@@ -35,36 +35,37 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var utils = require("../utils/GeneralUtils");
-var util = require("util");
-var messageEventHandler = function (botUtils, message) { return __awaiter(void 0, void 0, void 0, function () {
-    var args, cmd, err_1, chan;
+Object.defineProperty(exports, "__esModule", { value: true });
+var os = require("os");
+var secondsToDDHHMMSS = function (s) {
+    var day = Math.floor(s / (24 * 3600));
+    s = s % (24 * 3600);
+    var hour = Math.floor(s / 3600);
+    s %= 3600;
+    var minutes = Math.floor(s / 60);
+    s %= 60;
+    var seconds = Math.floor(s);
+    return day + "D : " + hour + "H : " + minutes + "M : " + seconds + "S";
+};
+exports.exec = function (message, args, botUtils) { return __awaiter(void 0, void 0, void 0, function () {
     return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0:
-                if (message.author.bot || !message.content.toLowerCase().startsWith(botUtils.getBotConfig().prefix))
-                    return [2 /*return*/];
-                args = message.content.split(botUtils.getBotConfig().prefix)[1].split(' ').filter(function (v) { return v !== ''; });
-                cmd = args[0].toLowerCase();
-                if (!botUtils.getCommandsMap().has(cmd))
-                    return [2 /*return*/];
-                _a.label = 1;
-            case 1:
-                _a.trys.push([1, 3, , 4]);
-                return [4 /*yield*/, botUtils.getCommandsMap().get(cmd).exec(message, args, botUtils)];
-            case 2:
-                _a.sent();
-                return [3 /*break*/, 4];
-            case 3:
-                err_1 = _a.sent();
-                chan = message.channel;
-                message.channel.send("\u274C Command execution failed. You can report this to <@226457061959925761>").catch(function (errr) { return utils.logError("ERR:\n" + errr); });
-                if (util.inspect(err_1).length < 1900)
-                    message.channel.send('Reason for error:\n```js\n' + util.inspect(err_1) + '```').catch(function (errr) { return utils.logError("ERR:\n" + errr); });
-                utils.logError("Command execution failed.\nCOMMAND: " + message.content + "\nERR: " + util.inspect(err_1) + "\nTIME: " + new Date(Date.now()) + "\nGUILD: " + message.guild.name + " | " + message.guild.id + "\nCHANNEL: " + chan.name + " | " + chan.id + "\nUSER: " + message.author.username + " | " + message.author.id);
-                return [3 /*break*/, 4];
-            case 4: return [2 /*return*/];
-        }
+        return [2 /*return*/, new Promise(function (resolve, reject) {
+                try {
+                    var embed = botUtils.constructEmbed();
+                    embed.setThumbnail(message.client.user.avatarURL());
+                    embed.setTitle("About " + message.client.user.username);
+                    embed.addField("Bot Uptime", secondsToDDHHMMSS(message.client.uptime / 1000));
+                    embed.addField("Host Uptime", secondsToDDHHMMSS(os.uptime()));
+                    embed.addField("Memory", (os.freemem() / Math.pow(10, 9)).toFixed(2) + "GBs / " + (os.totalmem() / Math.pow(10, 9)).toFixed(2) + "GBs free (" + Math.round(100 * (1 - (os.freemem() / os.totalmem()))) + "% used)");
+                    embed.addField("OS", os.type + " " + os.release + " " + os.arch);
+                    embed.setDescription("[Github Repo](https://github.com/obertguo/lcss-covid-bot)");
+                    message.channel.send(embed);
+                    resolve();
+                }
+                catch (err) {
+                    reject(err);
+                }
+            })];
     });
 }); };
-module.exports = messageEventHandler;
+exports.desc = 'Displays bot information';
