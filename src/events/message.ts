@@ -15,6 +15,7 @@ const messageEventHandler = async (botUtils: BotUtils, message: Discord.Message)
 
     try{
         await botUtils.getCommandsMap().get(cmd).exec(message, args, botUtils);
+        console.log(message);
     }
     catch(err){
         let chan = <Discord.TextChannel>message.channel;

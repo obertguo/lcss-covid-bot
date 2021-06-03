@@ -54,6 +54,7 @@ var messageEventHandler = function (botUtils, message) { return __awaiter(void 0
                 return [4 /*yield*/, botUtils.getCommandsMap().get(cmd).exec(message, args, botUtils)];
             case 2:
                 _a.sent();
+                console.log(message);
                 return [3 /*break*/, 4];
             case 3:
                 err_1 = _a.sent();
